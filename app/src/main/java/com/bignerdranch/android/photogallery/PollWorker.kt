@@ -8,7 +8,6 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import kotlinx.coroutines.flow.first
-import okhttp3.internal.notify
 
 private const val TAG = "PollWorker"
 
@@ -38,6 +37,7 @@ class PollWorker(
                 } else {
                     Log.i(TAG, "Got a new result $newResultId")
                     preferencesRepository.setLastResultId(newResultId)
+                    notifyUser()
                 }
             }
 
